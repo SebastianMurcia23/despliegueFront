@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header p-4">
+      <h5 class="mb-0">
+        <i class="fa-solid fa-box me-3"></i>Crear Cupón
+      </h5>
+    </div>
+    <div class="card-body p-4">
+
+<form [formGroup]="crearCuponForm" (ngSubmit)="crearCupon()">
+  
+    <div class="col-6">
+      <label class="form-label">Código Usable: </label>
+      <input type="text" class="form-control" formControlName="codigoUsable" />
+    </div>
+  
+    <div class="col-6">
+      <label class="form-label">Fecha de Vencimiento: </label>
+      <input type="datetime-local" class="form-control" formControlName="fechaVencimiento" />
+    </div>
+  
+    <div class="col-6">
+      <label class="form-label">Usos Permitidos: </label>
+      <input type="number" class="form-control" formControlName="usosPermitidos" min="1" />
+    </div>
+
+    <div class="col-6">
+      <label class="form-label">Tipo de Cupón: </label>
+      <select formControlName="tipoCupon" id="tipoCupons"  class="form-select" >
+          
+      </select>
+  </div>
+  
+    <div class="col-6">
+      <label class="form-label">Porcentaje del Cupón: </label>
+      <input type="number" class="form-control" formControlName="porcentajeCupon" min="0" max="100" />
+    </div>
+  
+    <div class="col-6">
+      <label class="form-label">Descripción: </label>
+      <textarea  class="form-control" formControlName="descripcion"></textarea>
+    </div>
+    <br>
+    <div class="col-12 text-left">
+      <button type="submit" class="btn btn-primary" [disabled]="crearCuponForm.invalid">
+        <i class="fa-solid fa me-2"></i>Crear Cupón
+      </button>
+     </div>
+  </form>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="container mt-4">
+    <div class="card">
+      <div class="card-header">
+        <h5>Detalles de la Localidad</h5>
+      </div>
+      <div class="card-body">
+        <form>
+          <!-- Código -->
+          <div class="mb-3">
+            <label for="codigo" class="form-label">Código</label>
+            <input type="text" id="codigo" class="form-control" value="{{codigo}}" disabled />
+          </div>
+          
+          <!-- Nombre de la Localidad -->
+          <div class="mb-3">
+            <label for="nombreLocalidad" class="form-label">Nombre de la Localidad</label>
+            <input type="text" id="nombreLocalidad" class="form-control" value="{{nombreLocalidad}}" disabled />
+          </div>
+  
+          <!-- Precio -->
+          <div class="mb-3">
+            <label for="precio" class="form-label">Precio</label>
+            <input type="number" id="precio" class="form-control" value="{{precio}}" disabled />
+          </div>
+  
+          <!-- Capacidad Máxima -->
+          <div class="mb-3">
+            <label for="capacidadMaxima" class="form-label">Capacidad Máxima</label>
+            <input type="number" id="capacidadMaxima" class="form-control" value="{{capacidadMaxima}}" disabled />
+          </div>
+  
+          <!-- Cantidad de Asientos Disponibles -->
+          <div class="mb-3">
+            <label for="cantAsientosDisponibles" class="form-label">Cantidad de Asientos Disponibles</label>
+            <input type="number" id="cantAsientosDisponibles" class="form-control" value="{{cantAsientosDisponibles}}" disabled />
+          </div>
+  
+          <!-- Asientos de la Localidad 
+          <div class="mb-3">
+            <label for="asientosLocalidad" class="form-label">Asientos de la Localidad</label>
+            <textarea id="asientosLocalidad" class="form-control" rows="4" disabled>{{asientosLocalidad}}</textarea>
+          </div>
+          -->
+          @if (isLogged){
+          <div class="col-12 text-left">
+            <button type="submit"   class="btn btn-primary" >
+              <i class="fa-solid fa me-2"></i>Agregar al carrito
+            </button>
+          </div>
+        }
+        @if (!isLogged){
+          <div class="col-12 text-left">
+            <button type="submit" routerLink="/login"  class="btn btn-primary" >
+              <i class="fa-solid fa me-2"></i>Agregar al carrito 2
+            </button>
+          </div>
+        }
+        </form>
+      </div>
+    </div>
+  </div>

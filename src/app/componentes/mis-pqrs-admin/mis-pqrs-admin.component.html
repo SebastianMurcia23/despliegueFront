@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header ps-5 pt-4 pb-4">
+            <h5 class="mb-0"><i class="fa-solid fa-location-dot me-3"></i>Mis PQRS-Admin:</h5>
+        </div>
+        <div class="card-body p-5">
+ 
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th>id Pqrs</th>
+                            <th>Tipo</th>
+                            <th>Titulo</th>
+                            <th>Estado</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        @for (item of pqrsListas; track $index) {             
+                        <tr>
+                            <td>
+                                <p>{{item.codigo}}</p>
+                            </td>
+                            <td>
+                                <p>{{item.tipoSolicitud}}</p>
+                            </td>
+                            <td>
+                                <p>{{item.titulo}}</p>
+                            </td>
+                            <td>
+                                <p>{{item.estadoPQRS}}</p>
+                            </td>
+                           
+                            <td>
+                                <a routerLink="/detallePQRS-Admin/{{item.codigo}}">Ver PQRS</a>
+                            </td>
+                          
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+ 
+ 
+        </div>
+ 
+ 
+    </div>
+ 
+ 
+ </div>

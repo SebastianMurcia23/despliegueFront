@@ -1,0 +1,145 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header p-4">
+      <h5 class="mb-0">
+        <i class="fa-solid fa-box me-3"></i>Crear evento
+      </h5>
+    </div>
+    <div class="card-body p-4">
+      <form [formGroup]="crearEventoForm"  novalidate>
+        
+        <div class="row mb-3">
+          <div class="col-6">
+            <label class="form-label">Nombre:</label>
+            <input type="text" class="form-control" formControlName="nombre" />
+          </div>
+          <div class="col-6">
+            <label class="form-label">Dirección:</label>
+            <input type="text" class="form-control" formControlName="direccion" />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+
+
+          <div class="row mb-3">
+            <div class="col-6">
+              <label class="form-label">Ciudad:</label>
+              <select id="ciudadSelected" class="form-control" formControlName="ciudad">
+                
+              </select>
+            </div>
+          </div>
+
+
+          <div class="col-6">
+            <label class="form-label">Descripción:</label>
+            <textarea class="form-control" formControlName="descripcion"></textarea>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-6">
+            <label class="form-label">Tipo:</label>
+            <select id="tipoSelected" class="form-control" formControlName="tipoEvento">
+              
+            </select>
+          </div>
+          <div class="col-3">
+            <label class="form-label">Fecha:</label>
+            <input type="datetime-local" class="form-control" formControlName="fechaEvento" />
+          </div>
+
+
+        </div>
+
+        <!-- Comportamiento Localidades -->
+        <div class="card mb-4">
+          <div class="card-header p-2">
+            <h5 class="mb-0">
+              <i class="fa-solid fa-box me-3"></i>Localidades
+            </h5>
+          </div>
+          <div class="card-body p-2">
+            <div formArrayName="localidades">
+              <ul class="list-group">
+                <li *ngFor="let localidad of localidades.controls; let i = index" [formGroupName]="i" class="list-group-item">
+                  
+                  <div class="row">
+                    <div class="col-6">
+                      <label class="form-label">Nombre localidad:</label>
+                      <input type="text" class="form-control" formControlName="nombreLoc" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label">Precio localidad:</label>
+                      <input type="text" class="form-control" formControlName="precio" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label">Capacidad localidad:</label>
+                      <input type="number" class="form-control" formControlName="capacidad" />
+                    </div>
+                    <div class="col-6 mt-2">
+                      <button type="button" class="btn btn-danger" (click)="eliminarLocalidad(i)" [disabled]="localidades.length <= 1">
+                        <i class="fa-solid fa fa-trash me-2"></i>Quitar
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <button type="button" class="btn btn-secondary mt-3" (click)="agregarLocalidad()" [disabled]="!todosLosCamposCompletos()">
+                <i class="fa-solid fa-plus me-2"></i>Agregar otra localidad
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección de Archivos -->
+        <div class="row mb-3">
+          
+          <!--
+          <div class="col-6">
+            <label class="form-label">Imagen evento:</label>
+            <input type="file" class="form-control" (change)="onFileChange($event, 'imagenPortada')" formControlName="poster"/>
+          </div>
+          -->
+            <div class="col-6 d-inline-block">
+              <label class="form-label">Imagen portada: </label>
+              <div class="d-flex gap-2" >
+                  <input type="file" (change)="onFileChange($event, 'imagenPortada')" class="form-control" formControlName="poster"/>
+                  <button type="submit" class="btn btn-primary" (click)="subirImagen('imagenPortada')" ><i class="fa-solid fa-cloud-arrow-up"></i></button>
+              </div>
+            </div>
+            <div class="col-6 d-inline-block">
+              <label class="form-label">Imagen boleta: </label>
+              <div class="d-flex gap-2" >
+                  <input type="file" (change)="onFileChange($event, 'imgBoleta')" class="form-control" formControlName="imgBoleta"/>
+                  <button type="submit" class="btn btn-primary" (click)="subirImagen('imgBoleta')" ><i class="fa-solid fa-cloud-arrow-up"></i></button>
+              </div>
+            </div>
+       
+          <!-- antiguo  -->
+
+        </div>
+        
+        <div class="row mb-3">
+
+          <div class="col-6 d-inline-block">
+            <label class="form-label">Imagen localidades: </label>
+            <div class="d-flex gap-2" >
+                <input type="file" (change)="onFileChange($event, 'imagenLocalidades')" class="form-control" formControlName="imgDistribucionLocalidades"/>
+                <button type="submit" class="btn btn-primary" (click)="subirImagen('imagenLocalidades')" ><i class="fa-solid fa-cloud-arrow-up" ></i></button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-12 text-left">
+          <button type="submit" class="btn btn-primary" (click)="crearEvento()"[disabled]="crearEventoForm.invalid">
+            <i class="fa-solid fa me-2"></i>Crear evento
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

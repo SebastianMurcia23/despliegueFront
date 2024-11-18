@@ -1,0 +1,42 @@
+
+<div class="container">
+    <div class="card">
+      <div class="card-header p-4">
+        <h5 class="mb-0">
+          <i class="fa-solid fa-book me-3"></i>Inicio
+        </h5>
+      </div>
+      <div class="card-body p-4">
+        
+
+        <div class="container">
+          <div class="row">
+        <!-- Tarjetas en un bucle para cada evento -->
+        @for (item of eventos; track $index) {
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <img src="{{item.imagenPortada}}" class="card-img-top" alt="{{item.nombre}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.nombre}}</h5>
+                    <p class="card-text"><strong>Tipo:</strong> {{item.tipo}}</p>
+                    <p class="card-text"><strong>Ubicación:</strong> {{item.ciudad}}</p>
+                    <p class="card-text"><strong>Fecha:</strong> {{item.fecha}}</p>
+                    <p class="card-text"><strong>Estado:</strong> {{item.estado}}</p>
+                    @if (isClient==true||isLogged==false){
+                    <a routerLink="/detalle-evento/{{item.id}}" class="btn btn-primary stretched-link">Ver Evento</a>
+                    }
+                    @if (isAdmin){
+                      <a routerLink="/verEventoAdmin/{{item.id}}" class="btn btn-primary stretched-link">Editar Evento</a>
+                    }
+                </div>
+               
+            </div>
+        </div>
+        }
+
+      </div>
+    </div>
+    
+      </div>
+    </div>
+   </div>

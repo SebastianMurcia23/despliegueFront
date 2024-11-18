@@ -1,0 +1,101 @@
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a routerLink="" class="d-inline-flex link-body-emphasis text-decoration-none align-items-center">
+          <i class="fa-solid fa-ticket fs-3"></i>
+          <span class="fs-4 ms-3 me-3">{{title}}</span>
+          @if (isLogged) {
+          <button type="button" class="btn btn-warning me-3"><h6>{{rol}}</h6>  </button>
+          }
+        </a>
+      </div>
+   
+   
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a routerLink="/inicio" class="nav-link px-2 link-secondary">Inicio</a></li>
+        @if (isLogged) {
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Eventos
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              @if (isAdmin){
+              <li><a class="dropdown-item" routerLink="/gestion-eventos">Gestión eventos</a></li>
+              <li><a class="dropdown-item" routerLink="/crear-evento">Crear evento</a></li>
+              }
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Cupones
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              @if (isAdmin){
+              <li><a class="dropdown-item" routerLink="/crearCupon">Crear Cupón</a></li>
+              <li><a class="dropdown-item" routerLink="/gestion-Cupones">Gestionar Cupones</a></li>
+              }
+            </ul>
+          </li>
+
+
+          <!-- TICKETS -->
+          @if (isClient){
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tickets
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              
+              <li><a class="dropdown-item" routerLink="/">Mis tickets</a></li>
+              <li><a class="dropdown-item" routerLink="/transferirTicket">Transferir ticket</a></li>
+              <li><a class="dropdown-item" routerLink="/">Tickets recibidos</a></li>
+              
+            </ul>
+          </li>
+        }
+
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              PQRS
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              @if (isClient){
+              <li><a class="dropdown-item" routerLink="/crearPqrs">Crear PQRS</a></li>
+              <li><a class="dropdown-item" routerLink="/misPQRS">Mis PQRS</a></li>
+              }
+              @if (isAdmin){
+              <li><a class="dropdown-item" routerLink="/misPQRS-Admin">Gestionar PQRS</a></li>
+              }
+              <!--<li><a class="dropdown-item" routerLink="/crear-evento">Crear evento</a></li>-->
+            </ul>
+          </li>
+        } 
+      
+       
+        
+      </ul>
+   
+   
+      <div class="col-md-3 text-end">
+
+        <div class="col-md-3 d-flex text-end align-items-center">
+          @if (!isLogged) {
+          <button type="button" routerLink="/login" class="btn btn-outline-primary me-2">Login</button>
+          <button type="button" routerLink="/registro" class="btn btn-primary">Registro</button>
+          }@else {
+            <button type="button" routerLink="/miPerfil/{{idUser}}" class="btn btn-info me-3"><h6>{{email}}</h6>  </button>
+            
+          
+          <!--<label class="me-3"> {{rol}}</label>-->
+          <button type="button" (click)="logout()" class="btn btn-primary ">Logout</button>
+          }
+          
+
+         </div>
+      </div>
+    </header>
+   </div>

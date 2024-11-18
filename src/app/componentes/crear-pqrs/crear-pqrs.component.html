@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="card">
+      <div class="card-header p-4">
+        <h5 class="mb-0">
+          <i class="fa-solid fa-box me-3"></i>Crear PQRS
+        </h5>
+      </div>
+      <div class="card-body p-4">
+            <form [formGroup]="crearPqrsForm" (ngSubmit)="enviarPQRS()">
+               
+                <div class="col-6">
+                    <label class="form-label">Titulo: </label>
+                    <input type="text" class="form-control" formControlName="titulo" />
+                </div>
+
+                <div class="col-6">
+                    <label class="form-label">Tipo de Solicitud: </label>
+                    <select formControlName="tipoSolicitud" class="form-select" >
+                        <option value="">Seleccione un tipo de solicitud</option>
+                        @for (item of tiposDeSolicitud; track $index) {
+                            <option value="{{item}}">{{item}}</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-6">
+                    <label class="form-label">Mensaje: </label>
+                    <input type="textarea" class="form-control" formControlName="mensaje" />
+                </div>
+
+                <br>
+                <div class="col-12 text-left">
+                    <button type="submit" class="btn btn-primary" [disabled]="crearPqrsForm.invalid">
+                      <i class="fa-solid fa me-2"></i>Crear PQRS
+                    </button>
+                   </div>
+                
+
+            </form>
+        </div>
+    </div>
+</div>

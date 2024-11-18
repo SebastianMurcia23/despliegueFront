@@ -1,0 +1,119 @@
+<div class="container mt-4">
+    <h2 class="mb-4">Detalles de la PQRS</h2>
+    <form>
+
+<!-- Estado de la PQRS -->
+      
+<div class="row mb-2">
+  <div class="col-6">
+    <label for="estadoPQRS" class="form-label">Estado</label>
+    <input type="text" class="form-control" id="estadoPQRS" value="{{estadoPQRS}}" readonly>
+  </div>
+  <div class="col-6">
+    <br>
+    @if (estadoPQRS==='PENDIENTE') {
+      <button type="button" class="btn btn-danger">Cancelar PQRS</button>
+    }
+    @if (estadoPQRS!=='PENDIENTE') {
+    <button type="button" class="btn btn-primary col-3" >Reactivar</button>
+    }
+  </div>
+</div>
+
+      <!-- Código -->
+      <div class="mb-3">
+        <label for="codigo" class="form-label">Código</label>
+        <input type="text" class="form-control" id="codigo"  value="{{codigoPQRS}}" readonly>
+      </div>
+  
+      <!-- ID Cliente -->
+      <div class="mb-3">
+        <label for="idCliente" class="form-label">ID Cliente</label>
+        <input type="text" class="form-control" id="idCliente" value="{{idCliente}}" readonly>
+      </div>
+
+      
+      <!-- ID del Administrador que Atiende -->
+      <div class="mb-3">
+        <label for="idAdminAtiende" class="form-label">ID Administrador que Atiende</label>
+        <input type="text" class="form-control" id="idClientLoggued" value="{{idClientLoggued}}" readonly>
+      </div>
+  
+      <!-- Tipo de Solicitud -->
+      <div class="mb-3">
+        <label for="tipoSolicitud" class="form-label">Tipo de Solicitud</label>
+        <input type="text" class="form-control" id="tipoSolicitud" value="{{tipoSolicitud}}" readonly>
+      </div>
+  
+      <!-- Título -->
+      <div class="mb-3">
+        <label for="titulo" class="form-label">Título</label>
+        <input type="text" class="form-control" id="titulo"  value="{{titulo}}" readonly>
+      </div>
+  
+      <!-- Mensaje -->
+      <div class="mb-3">
+        <label for="mensaje" class="form-label">Mensaje</label>
+        <textarea class="form-control" id="mensaje" rows="3" value="{{mensaje}}" readonly></textarea>
+      </div>
+  
+      
+
+       <!-- Respuestas -->
+       <div class="mb-3">
+        <label for="respuestas" class="form-label"><h4>Respuestas</h4></label>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-responsive">
+              <thead>
+                  <tr>
+                      
+                      <th>Autor</th>
+                      <th>Titulo</th>
+                      <th>mensaje</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody class="table-group-divider">
+                  @for (itemLis of listaRespuestasDto; track $index) {             
+                  <tr>
+                      
+                      <td>
+                          <p>{{itemLis.idAutor}}</p>
+                      </td>
+                      <td>
+                          <p>{{itemLis.titulo}}</p>
+                      </td>
+                      <td>
+                          <p>{{itemLis.mensaje}}</p>
+                      </td>
+                     
+                      <td>
+                          
+                      </td>
+                    
+                  </tr>
+                  }
+              </tbody>
+          </table>
+      </div>
+      </div>
+
+      <!--cajas de respuesta-->
+      
+ 
+        
+
+
+   
+
+
+
+
+
+  
+      <!-- Botón de regreso -->
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-primary" >Volver</button>
+      </div>
+    </form>
+  </div>

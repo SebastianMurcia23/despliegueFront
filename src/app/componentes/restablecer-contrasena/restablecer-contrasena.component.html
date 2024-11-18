@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header p-4">
+      <h5 class="mb-0">
+        <i class="fa-solid fa-user-plus me-3"></i>Restablecer contrseña
+      </h5>
+    </div>
+    <div class="card-body p-4">
+      <!-- Formulario para ingresar el correo electrónico -->
+        <form [formGroup]="restablecerContrasenaForm" (ngSubmit)="restablecerContrasena()" *ngIf="!emailEnviado">
+
+          <div class="col-6">
+            <label>Correo Electrónico: </label>
+            <input type="email" class="form-control" formControlName="email" />
+            <div *ngIf="restablecerContrasenaForm.get('email')?.invalid && restablecerContrasenaForm.get('email')?.touched">
+              <small>Por favor ingresa un correo válido.</small>
+            </div>
+           </div>
+          <br>
+           <div class="col-12 text-left">
+            <button type="submit" class="btn btn-primary" [disabled]="restablecerContrasenaForm.invalid">
+              <i class="fa-solid fa me-2"></i>Restablecer Contraseña
+            </button>
+           </div>
+
+        </form>
+
+        <!-- Formulario de Código de Verificación -->
+        <form [formGroup]="verificarCodigoForm" (ngSubmit)="validarCodigo()" *ngIf="emailEnviado && !codigoVerificado">
+          <div class="col-6">
+            <label>Código de Verificación: </label>
+            <input type="text" class="form-control" formControlName="codigoVerificacion" />
+            <div *ngIf="verificarCodigoForm.get('codigoVerificacion')?.invalid && verificarCodigoForm.get('codigoVerificacion')?.touched">
+              <small>Por favor ingresa el código de verificación.</small>
+            </div>
+          </div>
+          <br>
+           <div class="col-12 text-left">
+            <button type="submit" class="btn btn-primary" [disabled]="verificarCodigoForm.invalid">
+              <i class="fa-solid fa me-2"></i>Validar Código
+            </button>
+           </div>
+          
+        </form>
+
+        <!-- Formulario para Nueva Contraseña -->
+        <form [formGroup]="nuevaContrasenaForm" (ngSubmit)="guardarNuevaContrasena()" *ngIf="codigoVerificado">
+          <div class="col-6">
+            <label>Contraseña: </label>
+            <input type="password" class="form-control" formControlName="nuevaContrasena" />
+          </div>
+
+          <div class="col-6">
+              <label>Repetir contraseña: </label>
+              <input type="password" class="form-control" formControlName="confirmarContrasena" />
+          </div>
+          @if (nuevaContrasenaForm.hasError('passwordsMismatch')) {
+              <p>Las contraseñas no coinciden</p>
+              }
+          <br>
+          <div class="col-12 text-left">
+            <button type="submit" class="btn btn-primary" [disabled]="nuevaContrasenaForm.invalid">
+              <i class="fa-solid fa me-2"></i>Guardar Nueva Contraseña
+            </button>
+          </div>
+        </form>
+    </div>
+  </div>
+ </div>
+
+
+

@@ -1,0 +1,72 @@
+
+<div class="container">
+    <div class="card">
+      <div class="card-header p-4">
+        <h5 class="mb-0">
+          <i class="fa-solid fa-book me-3"></i>Cupones
+        </h5>
+      </div>
+      
+<div class="row mb-2">
+  <form [formGroup]="actualizarCuponForm" (ngSubmit)="actualizarCupon()" novalidate="">
+    <div class="card-body p-4">
+        <div class="col-6">
+            <label  class="form-label">Codigo Usable:</label>
+            
+              <input type="text" class="form-control"  value="{{codigoUsable}}" formControlName="idCodCupon" > 
+          </div>
+  <!-- fecha -->
+  <div class="mb-3">
+    <label  class="form-label">Fecha:</label>
+    <input type="datetime-local" class="form-control"  value="{{fechaVencimiento}}" formControlName="fechaVencimiento">
+  </div>
+  
+  <!-- Usos permitidos -->
+  <div class="mb-3">
+    <label  class="form-label">Usos permitidos:</label>
+    <input type="number" class="form-control"  value="{{usosPermitidos}}" formControlName="usosPermitidos" >
+  </div>
+  <!-- Usos realizados -->
+  <div class="mb-3">
+    <label  class="form-label">Usos realizados:</label>
+    <input type="number" class="form-control"  value="{{usosRealizados}}" readonly>
+  </div>
+  
+  <!-- Estado cupon -->
+ 
+
+  <div class="col-6">
+    <label class="form-label">Estado cupon: </label>
+    <select formControlName="estadoCupon" class="form-control" id="estadoCupons"value="{{estadoCupon}}"  class="form-select" >
+        
+    </select>
+</div>
+  
+  <!-- tipo cupon -->
+  
+  <div class="mb-3">
+    <label  class="form-label">Tipo cupón:</label>
+    <input type="text" class="form-control"  value="{{tipoCupon}}" readonly>
+  </div>
+
+  
+  <!-- porcentaje descuento -->
+  <div class="mb-3">
+    <label  class="form-label">Porcentaje descuento:</label>
+    <input type="text" class="form-control"   value="{{porcentajeCupon}}" formControlName="porcentajeCupon">
+  </div>
+  <!-- descripcion -->
+  <div class="mb-3">
+    <label for="mensaje" class="form-label">Descripción:</label>
+    <textarea class="form-control" id="mensaje" rows="3" value="{{descripcion}}" formControlName="descripcion"></textarea>
+  </div>
+  <div class="col-12 text-left">
+    <button type="submit" class="btn btn-primary" >
+      <i class="fa-solid fa me-2"></i>Guardar Cambios
+    </button>
+  </div>
+  </div>
+</form>
+</div>
+    </div>
+ 

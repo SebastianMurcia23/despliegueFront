@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="card">
+      <div class="card-header p-4">
+        <h5 class="mb-0">
+          <i class="fa-solid fa-book me-3"></i>Cupones
+        </h5>
+      </div>
+      <div class="card-body p-4">
+        
+
+        <div class="container">
+          <div class="row">
+        <!-- Tarjetas en un bucle para cada evento -->
+        @for (item of listCuponesDTO; track $index) {
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.codigoUsable}}</h5>
+                    <p class="card-text"><strong>Fecha de vencimiento:</strong> {{item.fechaVencimiento}}</p>
+                    <p class="card-text"><strong>Porcentaje:</strong> {{item.porcentajeCupon}}</p>
+                    <p class="card-text"><strong>Descripcion:</strong> {{item.descripcion}}</p>
+                    <a routerLink="/ver-Cupon/{{item.codigo}}" class="btn btn-primary stretched-link">Ver Cupon</a>
+                </div>
+               
+            </div>
+        </div>
+        }
+
+      </div>
+    </div>
+    
+      </div>
+    </div>
+   </div>

@@ -1,0 +1,70 @@
+import { Component } from '@angular/core';
+import { EventosService } from '../../servicios/eventos.service';
+import { RouterModule } from '@angular/router';
+import Swal from 'sweetalert2';
+import { PQRS } from '../../model/PQRS';
+import { TokenService } from '../../servicios/token.service';
+import { ClienteService } from '../../servicios/cliente.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PQRSDTO } from '../../dto/pqrs-dto';
+
+
+
+@Component({
+  selector: 'app-mis-pqrs',
+  standalone: true,
+  imports: [RouterModule,ReactiveFormsModule],
+  templateUrl: './mis-pqrs.component.html',
+  styleUrl: './mis-pqrs.component.css'
+})
+export class MisPqrsComponent {
+
+  pqrsList!:PQRS[];
+  pqrsListas!:PQRSDTO[];
+
+  constructor(private tokenService: TokenService,private clienteService : ClienteService) {
+    this.misPQRS(tokenService.getIDCuenta());
+    
+   }
+
+
+   public misPQRS(idUser : string) {
+    this.clienteService.obtenerMisPQRS(idUser).subscribe({
+      next: (data) => {
+        this.pqrsList = data.respuesta.map((item: any) => this.mapToPQRS(item));
+        this.pqrsListas = this.transformOBJDTO(this.pqrsList); // Transformar a DTO
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+
+   }
+   private mapToPQRS(json: any): PQRS {
+    return new PQRS(
+      json.codigo,
+      json.idCliente,
+      json.tipoSolicitud,
+      json.titulo,
+      json.mensaje,
+      json.estadoPQRS,
+      json.respuestas || [],
+      json.idAdminAtiende || null
+    );
+  }
+   private transformOBJDTO(listaPQRS: PQRS[]): PQRSDTO[] {
+    return listaPQRS.map((item: PQRS) => {
+      return {
+        codigo: item.getCodigo(),
+        idCliente: item.getIdCliente(),
+        tipoSolicitud: item.getTipoSolicitud(),
+        titulo: item.getTitulo(),
+        mensaje: item.getMensaje(),
+        estadoPQRS: item.getEstadoPQRS(),
+        respuestas: item.getRespuestas(),
+        idAdminAtiende: item.getIdAdminAtiende() || '',
+      };
+    });
+  }
+   
+}

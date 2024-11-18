@@ -1,0 +1,23 @@
+<form [formGroup]="editarClienteForm" (ngSubmit)="editarCliente()">
+    <div>
+      <label>Identificación: </label>
+      <input type="text" formControlName="identificacion" />
+    </div>
+  
+    <div>
+      <label>Nombre Completo: </label>
+      <input type="text" formControlName="nombreCompleto" />
+    </div>
+  
+    <div>
+      <label>Dirección: </label>
+      <input type="text" formControlName="direccion" />
+    </div>
+  
+    <div>
+      <label>Teléfono: </label>
+      <input type="text" formControlName="telefono" />
+    </div>
+  
+    <button type="submit" [disabled]="editarClienteForm.invalid">Editar Cliente</button>
+  </form>
